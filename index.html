@@ -702,6 +702,7 @@ const CONFIG = {
   timing: {
     replyTimeoutMs: 45000,   // no bot reply within this -> show a fallback bubble
     typingTailMs:   2500,    // keep the typing indicator this long after a bubble (multi-bubble answers)
+    greetingWaitMs: 9000,    // after reset(), wait this long for the agent's welcome before sending
   },
   /* Quick options. `send` is the EXACT text pushed to Ada with sendMessage()
      (deterministic - no LLM in the middle), so each chip is a repeatable test case. */
@@ -776,10 +777,11 @@ const CONFIG = {
   ],
   // Canned greeting lines are swallowed so they never look like the answer.
   greetingPatterns: [
-    /^(hi|hello|hey)\b.{0,80}$/i,
-    /^hello! i'?m an ai/i,
+    /^(hi|hi there|hello|hey|good (morning|afternoon|evening))\b[^.!?\n]{0,140}[.!?]?$/i,
+    /i'?m (the|an|your)\b.{0,70}\b(ai|virtual|digital)\s+(assistant|agent)/i,
+    /here to help\b.{0,140}\b(gift|business|customer|reward)/i,
+    /how (may|can) i (help|assist)/i,
     /i'?m still learning/i,
-    /how (may|can) i (help|assist) you/i,
     /^welcome to prezzee/i,
   ],
 };
@@ -798,11 +800,13 @@ const state = {
   view:'ask',                // 'ask' | 'chat'
   awaiting:false,            // a question is in flight
   msgs:[],                   // {who:'me'|'bot'|'err', text, ts}
-  swallowed:null,            // a canned greeting we held back, in case it's all we ever get
+  greetingSeen:false,        // any inbound bot message => the agent is live on this conversation
+  answered:false,            // a non-greeting bot message has been shown
+  pendingSend:null,          // question asked before the conversation was ready
+  swallowed:null,            // canned greeting lines held back, in case they're all we ever get
   typingTimer:null, timeoutTimer:null,
   demo:/[?&]demo\b/i.test(location.search),
 };
-const shownReply = () => state.msgs.some(m=>m.who==='bot');
 
 /* ============ small helpers ============ */
 const toastEl=$('#toast');
@@ -957,19 +961,21 @@ async function ask(text){
   state.timeoutTimer=setTimeout(()=>{
     if(!state.awaiting) return;
     finishTurn();
-    // If the only thing Ada sent was a canned greeting we held back, show it rather than an error.
-    if(!shownReply() && state.swallowed){ push('bot',state.swallowed); state.swallowed=null; }
+    // If all Ada ever sent was the canned greeting we held back, show it rather than an error.
+    if(!state.answered && state.swallowed){ state.answered=true; push('bot',state.swallowed); state.swallowed=null; }
     else push('err',"Sorry — I didn't get a response in time. Please try again, or reach the Prezzee Business team via Contact us.");
     showChat();
   }, CONFIG.timing.replyTimeoutMs);
 
   if(state.demo){ await delay(1400); handleBotMessage(demoReply(q)); return; }
 
-  if(!state.adaReady || !state.convReady){
-    finishTurn();
-    push('err','Still connecting to '+CONFIG.bot.name+'. Please try again in a moment.');
-    showChat(); return;
-  }
+  // The conversation may still be shaking hands (see freshConversation). Hold the question and
+  // let the handshake deliver it - sending mid-handshake makes Ada reply with its welcome flow
+  // instead of an answer.
+  if(!state.adaReady || !state.convReady){ state.pendingSend=q; console.log('[prezzee-ask] queued until the conversation is ready'); return; }
+  deliver(q);
+}
+async function deliver(q){
   try{
     const sent=await sendToAda(q);
     console.log('[prezzee-ask] sent to Ada, id=', sent&&sent.id, 'len='+q.length);
@@ -994,10 +1000,17 @@ function isGreeting(t){ return CONFIG.greetingPatterns.some(re=>re.test(t.trim()
 function handleBotMessage(body){
   const text=(body||'').trim();
   if(!text) return;
+  state.greetingSeen=true;                                     // the agent is live on this conversation
   if(/##internal##/i.test(text)) return;                       // internal, never shown
-  // Ada's canned welcome can land either on connect or right after the first question. Either way
-  // it isn't the answer, so hold it back - the reply timeout surfaces it if it's all we ever get.
-  if(!shownReply() && isGreeting(text)){ state.swallowed=text; return; }
+  // Ada's welcome can arrive as several messages, on connect or right after the first question.
+  // None of them are the answer, so hold them all back until a real answer shows up - the reply
+  // timeout surfaces them if they turn out to be all we ever get.
+  if(!state.answered && isGreeting(text)){
+    state.swallowed = state.swallowed ? state.swallowed+'\n\n'+text : text;
+    console.log('[prezzee-ask] held back a greeting line');
+    return;
+  }
+  state.answered=true;
 
   push('bot',text);
   // Multi-bubble answers: keep the typing indicator alive briefly after each bubble.
@@ -1054,8 +1067,17 @@ async function freshConversation(){
     console.log('[ada] reset - fresh conversation for this page load');
   }catch(e){ console.warn('[ada] reset failed, using existing conversation:',(e&&e.message)||e); }
   await delay(600);                    // let the refreshed chat frame become responsive
+
+  // Wait for the agent's own welcome before the first question goes out. Sending mid-welcome makes
+  // Ada answer with its greeting flow and drop the question, so the handshake gates the send.
+  const until=CONFIG.timing.greetingWaitMs;
+  for(let waited=0; waited<until && !state.greetingSeen; waited+=200) await delay(200);
+  console.log(state.greetingSeen ? '[ada] greeting received - conversation ready'
+                                 : '[ada] no greeting within '+until+'ms - proceeding anyway');
+  await delay(300);
   state.convReady=true;
   setLed('','Connected');
+  if(state.pendingSend){ const q=state.pendingSend; state.pendingSend=null; deliver(q); }
 }
 
 window.adaSettings = {
