@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Corporate Gift Cards | Prezzee Business</title>
+<link rel="icon" href="https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/67868c1fd9fe02655477036e_prezzee-business-logo.png" />
+<style>
+  /* ---------- Prezzee type + palette (lifted from the live prezzee.com design system) ---------- */
+  @font-face{font-family:"Rebond Grotesque";src:url(https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/67041c1053d36118ffdf4945_Rebond%20Grotesque%20Extrabold.otf) format("opentype");font-weight:800;font-display:swap}
+  @font-face{font-family:"Sofia Pro";src:url(https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/69a0f16fe928326a72e3ad34_60dbe5d3baa3d2496e96002c561edcb7_SofiaProRegular.woff) format("woff");font-weight:400;font-display:swap}
+  @font-face{font-family:"Sofia Pro";src:url(https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/69a0f16fe928326a72e3ad33_2b0503de0e2dd9609faa0824c7ce37b2_SofiaProMedium.woff) format("woff");font-weight:500;font-display:swap}
+  @font-face{font-family:"Sofia Pro";src:url(https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/69a0f16fe928326a72e3ad35_da6e60b4002a12d848fb79869e174d14_SofiaProSemiBold.woff) format("woff");font-weight:600;font-display:swap}
+  @font-face{font-family:"Sofia Pro";src:url(https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/69a0f16fe928326a72e3ad2a_0ede2a3c470b74c6656ba866ccda20b3_SofiaProBold.woff) format("woff");font-weight:700;font-display:swap}
+
+  :root{
+    /* swatches, verbatim from the Prezzee design system */
+    --mulberry:#381926; --mulberry-light:#4f2637; --mulberry-dark:#240814;
+    --mulberry-20:#38192633; --mulberry-40:#38192666;
+    --accent:#d14424; --tangerine:#ec684a; --tangerine-dark:#bf4e35; --tangerine-light:#ff9878;
+    --red:#ed1e09; --red-light:#ff3544;
+    --off-white:#fafaf8; --cream:#ebeae4; --cream-light:#f1f0ec; --cream-super-light:#f7f6f2; --cream-dark:#dbdad5;
+    --lilac:#bf8ee3; --lilac-light:#dbb5f7; --lilac-super-light:#eee0f8;
+    --lemon:#f7e969; --lemon-light:#f9f0a1;
+    --sky:#82cdf5; --sky-light:#b0e0f5;
+    --lime:#97c45f; --lime-light:#bbef78;
+    --peach:#edbcaa; --peach-light:#fbdbce;
+    --white:#fff;
+    --display:"Rebond Grotesque","Times New Roman",sans-serif;
+    --body:"Sofia Pro",Poppins,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    --radius-sm:10px; --radius:20px; --radius-lg:30px;
+    --shadow-card:0 2px 14px rgba(56,25,38,.07);
+    --shadow-lift:0 18px 44px rgba(56,25,38,.13);
+    --maxw:1240px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--body); color:var(--mulberry); background:var(--off-white);
+    font-size:16px; line-height:1.55; -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--mulberry)}
+  img{max-width:100%}
+  .shell{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  [hidden]{display:none !important}
+
+  h1,h2,h3,.display{font-family:var(--display);font-weight:800;letter-spacing:-.02em;line-height:1.02;margin:0}
+  h1{font-size:clamp(38px,5.6vw,74px)}
+  h2{font-size:clamp(31px,4vw,54px)}
+  h3{font-size:clamp(21px,1.7vw,27px);letter-spacing:-.01em;line-height:1.12}
+  .eyebrow{font-family:var(--body);font-weight:600;font-size:14px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  .lede{font-size:clamp(16.5px,1.35vw,20px);line-height:1.55;color:var(--mulberry-light)}
+
+  /* ---------- buttons ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--body);font-weight:500;
+    font-size:16px;line-height:1.3;padding:.78rem 1.72rem;border-radius:var(--radius-sm);border:1.5px solid transparent;
+    cursor:pointer;text-decoration:none;transition:background .16s,color .16s,border-color .16s,transform .08s}
+  .btn:active{transform:scale(.985)}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--tangerine-dark)}
+  .btn-mulberry{background:var(--mulberry);color:#fff}
+  .btn-mulberry:hover{background:var(--mulberry-light)}
+  .btn-outline{background:transparent;color:var(--mulberry);border-color:var(--mulberry)}
+  .btn-outline:hover{background:var(--mulberry);color:#fff}
+  .btn-outline-light{background:transparent;color:#fff;border-color:rgba(250,250,248,.55)}
+  .btn-outline-light:hover{background:#fff;color:var(--mulberry);border-color:#fff}
+  .btn-sm{font-size:14.5px;padding:.6rem 1.2rem}
+  .arrowlink{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15.5px;color:var(--accent);text-decoration:none}
+  .arrowlink svg{width:16px;height:16px;fill:currentColor;transition:transform .16s}
+  .arrowlink:hover svg{transform:translateX(4px)}
+
+  /* ---------- top utility bar ---------- */
+  .topbar{background:var(--mulberry);color:#fff;font-size:13.5px}
+  .topbar-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;gap:2px;align-items:stretch}
+  .topbar a{color:rgba(250,250,248,.62);text-decoration:none;padding:9px 16px;font-weight:500}
+  .topbar a.on{color:var(--mulberry);background:var(--off-white);border-radius:0 0 8px 8px}
+  .topbar a:not(.on):hover{color:#fff}
+  .topbar .region{margin-left:auto;display:flex;align-items:center;gap:7px;padding:9px 4px;color:rgba(250,250,248,.75)}
+  .topbar .region img{width:17px;height:17px;border-radius:50%;object-fit:cover}
+
+  /* ---------- header ---------- */
+  .nav{position:sticky;top:0;z-index:60;background:var(--off-white);border-bottom:1px solid var(--cream)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:34px}
+  .nav-logo{flex:none;display:block}
+  .nav-logo img{height:31px;width:auto;display:block}
+  .nav-links{display:flex;align-items:center;gap:28px;flex:1}
+  .nav-links a{display:inline-flex;align-items:center;gap:6px;color:var(--mulberry);text-decoration:none;font-weight:500;font-size:15.5px}
+  .nav-links a:hover{color:var(--accent)}
+  .nav-links svg.caret{width:10px;height:10px;fill:currentColor;opacity:.55}
+  .nav-cta{display:flex;align-items:center;gap:12px;flex:none}
+  .burger{display:none;border:0;background:transparent;cursor:pointer;padding:6px}
+  .burger svg{width:26px;height:26px;fill:var(--mulberry)}
+  @media(max-width:1040px){ .nav-links{display:none} .burger{display:block;margin-left:auto} }
+  @media(max-width:600px){ .nav-cta .btn:first-child{display:none} .topbar .region{display:none} }
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--mulberry);color:#fff;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-14%;top:-32%;width:60%;aspect-ratio:1;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%,rgba(236,104,74,.42),rgba(56,25,38,0) 66%);pointer-events:none}
+  .hero-in{max-width:var(--maxw);margin:0 auto;padding:78px 24px 88px;display:grid;grid-template-columns:1.06fr .94fr;
+    gap:56px;align-items:center;position:relative;z-index:1}
+  .hero h1{color:#fff;max-width:15ch}
+  .hero .lede{color:rgba(250,250,248,.8);margin:22px 0 34px;max-width:44ch}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero-trust{margin:34px 0 0;font-size:13.5px;color:rgba(250,250,248,.55);display:flex;flex-wrap:wrap;gap:8px 22px}
+  .hero-trust span{display:inline-flex;align-items:center;gap:7px}
+  .hero-trust svg{width:15px;height:15px;fill:var(--lime-light)}
+  @media(max-width:920px){ .hero-in{grid-template-columns:1fr;padding:52px 24px 62px;gap:38px} .hero h1{max-width:none} }
+
+  /* mocked-up gift-card stack (stands in for the live lottie) */
+  .cardstack{position:relative;height:430px}
+  .gcard{position:absolute;width:290px;aspect-ratio:1.58;border-radius:20px;padding:20px;display:flex;flex-direction:column;
+    justify-content:space-between;box-shadow:0 22px 46px rgba(36,8,20,.42);font-weight:600}
+  .gcard .brandline{font-family:var(--display);font-size:20px;letter-spacing:-.01em}
+  .gcard .amt{font-family:var(--display);font-size:33px;letter-spacing:-.02em}
+  .gcard .gfoot{display:flex;justify-content:space-between;align-items:flex-end;font-size:12px;font-weight:500;opacity:.72}
+  .gcard.c1{background:linear-gradient(135deg,var(--tangerine),var(--accent));color:#fff;left:2%;top:2%;transform:rotate(-8deg)}
+  .gcard.c2{background:linear-gradient(135deg,var(--lilac-light),var(--lilac));color:var(--mulberry-dark);left:27%;top:27%;transform:rotate(4deg)}
+  .gcard.c3{background:linear-gradient(135deg,var(--lemon-light),var(--lemon));color:var(--mulberry-dark);left:7%;top:57%;transform:rotate(-3deg)}
+  @media(max-width:920px){ .cardstack{height:400px;max-width:420px} }
+  @media(max-width:480px){ .gcard{width:230px} .cardstack{height:340px} }
+
+  /* ---------- brand marquee ---------- */
+  .marquee{background:var(--cream-light);padding:30px 0;overflow:hidden}
+  .marquee-track{display:flex;gap:54px;width:max-content;animation:slide 42s linear infinite;align-items:center}
+  .marquee:hover .marquee-track{animation-play-state:paused}
+  .marquee img{height:38px;width:auto;object-fit:contain;opacity:.8;transition:opacity .2s,transform .2s}
+  .marquee img:hover{opacity:1;transform:scale(1.06)}
+  @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){ .marquee-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center} }
+
+  /* ---------- generic sections ---------- */
+  .sec{padding:86px 0}
+  .sec.tight{padding:62px 0}
+  .sec.cream{background:var(--cream-light)}
+  .sec.superlight{background:var(--cream-super-light)}
+  .sec-head{max-width:660px;margin:0 auto 52px;text-align:center}
+  .sec-head .lede{margin:16px 0 0}
+  .sec-head.left{margin-left:0;text-align:left}
+  @media(max-width:640px){ .sec{padding:58px 0} .sec-head{margin-bottom:36px} }
+
+  /* why-choose */
+  .why{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .why-card{background:#fff;border:1px solid var(--cream);border-radius:var(--radius-lg);padding:34px 30px;text-align:center}
+  .why-ico{width:60px;height:60px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center}
+  .why-ico svg{width:27px;height:27px}
+  .why-card h3{margin-bottom:9px}
+  .why-card p{margin:0;color:var(--mulberry-light);font-size:15.5px}
+  @media(max-width:820px){ .why{grid-template-columns:1fr} }
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .step{border-radius:var(--radius-lg);padding:28px 24px 30px;min-height:214px;display:flex;flex-direction:column;justify-content:space-between}
+  .step .num{font-family:var(--display);font-size:44px;line-height:1;opacity:.34}
+  .step h3{margin:22px 0 8px}
+  .step p{margin:0;font-size:14.8px;opacity:.82}
+  .step.s1{background:var(--peach-light);color:var(--mulberry)}
+  .step.s2{background:var(--lilac-super-light);color:var(--mulberry)}
+  .step.s3{background:var(--lemon-light);color:var(--mulberry)}
+  .step.s4{background:var(--sky-light);color:var(--mulberry)}
+  .steps-cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin:44px 0 0}
+  @media(max-width:900px){ .steps{grid-template-columns:1fr 1fr} }
+  @media(max-width:520px){ .steps{grid-template-columns:1fr} .step{min-height:0} }
+
+  /* use cases */
+  .usecases{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+  .uc{background:#fff;border:1px solid var(--cream);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;
+    transition:box-shadow .18s,transform .18s}
+  .uc:hover{box-shadow:var(--shadow-lift);transform:translateY(-3px)}
+  .uc img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:var(--cream)}
+  .uc-body{padding:26px 28px 30px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .uc-body p{margin:0;color:var(--mulberry-light);font-size:15.5px;flex:1}
+  @media(max-width:760px){ .usecases{grid-template-columns:1fr} }
+
+  /* solutions */
+  .solutions{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .sol{background:var(--mulberry);color:#fff;border-radius:var(--radius-lg);padding:32px 30px 30px;display:flex;flex-direction:column;gap:14px;
+    transition:background .18s,transform .18s}
+  .sol:hover{background:var(--mulberry-light);transform:translateY(-3px)}
+  .sol img.ico{width:56px;height:56px;object-fit:contain;border-radius:12px}
+  .sol h3{color:#fff}
+  .sol h3 em{font-style:normal;display:block;opacity:.6;font-size:.66em}
+  .sol p{margin:0;flex:1;color:rgba(250,250,248,.76);font-size:15.5px}
+  .sol .arrowlink{color:var(--tangerine-light)}
+  @media(max-width:820px){ .solutions{grid-template-columns:1fr} }
+
+  /* split panels (pricing + smart card) */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .split.flip .split-visual{order:-1}
+  .split-visual img{width:100%;border-radius:var(--radius-lg);display:block}
+  .split h2{margin-bottom:18px}
+  .split .lede{margin:0 0 28px}
+  .split-actions{display:flex;flex-wrap:wrap;gap:14px}
+  @media(max-width:860px){ .split{grid-template-columns:1fr;gap:34px} .split.flip .split-visual{order:0} }
+
+  /* price plaque */
+  .plaque{background:var(--lemon);border-radius:var(--radius-lg);padding:44px 40px;color:var(--mulberry)}
+  .plaque .big{font-family:var(--display);font-size:clamp(56px,7vw,96px);line-height:.94;letter-spacing:-.03em}
+  .plaque .cap{font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;margin:6px 0 22px;opacity:.7}
+  .plaque ul{margin:0;padding:0;list-style:none;display:grid;gap:11px;font-size:15.5px}
+  .plaque li{display:flex;gap:11px;align-items:flex-start}
+  .plaque li svg{width:19px;height:19px;fill:var(--mulberry);flex:none;margin-top:2px}
+
+  /* smart-card visual */
+  .smartcard{background:linear-gradient(150deg,var(--mulberry-light),var(--mulberry-dark));border-radius:var(--radius-lg);padding:36px;color:#fff}
+  .smartcard .sc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
+  .smartcard .sc-logo{font-family:var(--display);font-size:19px}
+  .smartcard .sc-bal{background:rgba(250,250,248,.12);border-radius:999px;padding:6px 15px;font-size:13.5px;font-weight:600}
+  .brandgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}
+  .brandgrid div{background:rgba(250,250,248,.09);border:1px solid rgba(250,250,248,.14);border-radius:12px;height:62px;
+    display:grid;place-items:center;padding:8px}
+  .brandgrid img{max-height:26px;width:auto;filter:brightness(0) invert(1);opacity:.82}
+  .smartcard .sc-note{margin:24px 0 0;font-size:13.5px;color:rgba(250,250,248,.6)}
+
+  /* testimonials */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .quote{background:#fff;border:1px solid var(--cream);border-radius:var(--radius-lg);padding:30px 28px;display:flex;flex-direction:column;gap:18px}
+  .quote .mark{font-family:var(--display);font-size:46px;line-height:.6;color:var(--tangerine)}
+  .quote p{margin:0;font-size:15.8px;line-height:1.6;flex:1}
+  .quote .who{font-size:14px;line-height:1.45}
+  .quote .who b{display:block;font-weight:600}
+  .quote .who span{color:var(--mulberry-40);color:rgba(56,25,38,.6)}
+  @media(max-width:920px){ .quotes{grid-template-columns:1fr 1fr} }
+  @media(max-width:640px){ .quotes{grid-template-columns:1fr} }
+
+  /* =====================================================================
+     ASK SECTION — replaces the live page's collapsible FAQ accordion
+     ===================================================================== */
+  .ask-sec{background:var(--cream-light)}
+  .ask-wrap{max-width:840px;margin:0 auto}
+  .askbar{display:flex;align-items:center;gap:12px;background:#fff;border:1.5px solid var(--cream-dark);
+    border-radius:999px;padding:8px 8px 8px 20px;box-shadow:var(--shadow-card);transition:border-color .16s,box-shadow .16s}
+  .askbar:focus-within{border-color:var(--accent);box-shadow:0 0 0 4px rgba(209,68,36,.13)}
+  .askbar input{flex:1;min-width:0;border:0;outline:0;font-family:inherit;font-size:16.5px;color:var(--mulberry);background:transparent;padding:13px 0}
+  .askbar input::placeholder{color:rgba(56,25,38,.44)}
+  .send{flex:none;border:0;border-radius:999px;background:var(--accent);color:#fff;font-family:inherit;font-weight:500;
+    font-size:15.5px;padding:13px 26px;cursor:pointer;display:inline-flex;align-items:center;gap:9px;transition:background .16s,transform .08s}
+  .send:hover{background:var(--tangerine-dark)}
+  .send:active{transform:scale(.98)}
+  .send:disabled{background:var(--cream-dark);color:rgba(56,25,38,.5);cursor:not-allowed;transform:none}
+  .send svg{width:16px;height:16px;fill:currentColor}
+  @media(max-width:560px){ .send span{display:none} .send{padding:13px 17px} }
+  .ask-hint{margin:14px 4px 0;text-align:center;font-size:13.5px;color:rgba(56,25,38,.55)}
+
+  .avatar{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;
+    background:linear-gradient(140deg,var(--tangerine),var(--accent) 62%,var(--mulberry));
+    box-shadow:0 2px 9px rgba(209,68,36,.3)}
+  .avatar svg{width:20px;height:20px;fill:#fff}
+  .avatar.sm{width:31px;height:31px}
+  .avatar.sm svg{width:16px;height:16px}
+
+  .cluster-label{margin:34px 0 15px;text-align:center;font-size:12.5px;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:rgba(56,25,38,.5)}
+  .cluster{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  .qchip{border:1px solid var(--cream-dark);background:#fff;color:var(--mulberry);border-radius:999px;padding:11px 20px;
+    font-family:inherit;font-size:14.8px;font-weight:500;line-height:1.35;text-align:left;cursor:pointer;
+    transition:background .15s,border-color .15s,color .15s,transform .08s}
+  .qchip:hover{background:var(--mulberry);border-color:var(--mulberry);color:#fff}
+  .qchip:active{transform:scale(.98)}
+  .qchip:focus-visible{outline:3px solid var(--tangerine-light);outline-offset:2px}
+  .qchip.accent{background:var(--lilac-super-light);border-color:transparent;color:var(--mulberry)}
+  .qchip.accent:hover{background:var(--mulberry);color:#fff}
+  .ask-more{text-align:center;margin:30px 0 0}
+
+  /* CSP / connection warning — the Ada frame is origin-gated, so say so instead of failing silently */
+  .warn{max-width:840px;margin:20px auto 0;background:var(--lemon-light);border:1px solid var(--lemon);
+    border-radius:var(--radius);padding:15px 19px;font-size:13.5px;line-height:1.6;color:#6b5a09}
+  .warn b{font-weight:600}
+  .warn code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;background:#fff;padding:1px 5px;border-radius:4px}
+
+  .thinking{max-width:840px;margin:20px auto 0;display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--cream-dark);
+    border-radius:var(--radius);padding:14px 19px;color:var(--accent);font-weight:500;font-size:14.5px}
+  .dots{display:inline-flex;gap:5px}
+  .dots i{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;animation:bounce 1.2s infinite ease-in-out}
+  .dots i:nth-child(2){animation-delay:.15s}
+  .dots i:nth-child(3){animation-delay:.3s}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0);opacity:.45}40%{transform:translateY(-5px);opacity:1}}
+
+  /* ---------- conversation view (swaps in inside the ask section) ---------- */
+  .chatwrap{max-width:920px;margin:0 auto}
+  .chat{border:1px solid var(--cream-dark);border-radius:var(--radius-lg);background:#fff;box-shadow:var(--shadow-card);overflow:hidden}
+  .chat-head{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--cream);background:var(--cream-super-light)}
+  .chat-head .who{flex:1;min-width:0}
+  .chat-head .nm{font-weight:600;font-size:16px;display:flex;align-items:center;gap:8px}
+  .chat-head .nm .led{width:8px;height:8px;border-radius:50%;background:var(--lime)}
+  .chat-head .nm .led.busy{background:var(--tangerine)}
+  .chat-head .nm .led.off{background:var(--cream-dark)}
+  .chat-head .sub{font-size:12.5px;color:rgba(56,25,38,.55)}
+  .linkbtn{border:0;background:transparent;font-family:inherit;font-size:14px;font-weight:600;color:var(--accent);cursor:pointer;padding:8px 4px}
+  .linkbtn:hover{text-decoration:underline}
+  .msgs{padding:22px 20px 8px;min-height:340px;max-height:58vh;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+  .row{display:flex;gap:10px;align-items:flex-end;margin:8px 0;max-width:100%}
+  .row.me{justify-content:flex-end}
+  .bub{max-width:78%;padding:13px 17px;border-radius:18px;font-size:15.2px;line-height:1.6;overflow-wrap:anywhere}
+  .row.me .bub{background:var(--mulberry);color:#fff;border-bottom-right-radius:6px}
+  .row.bot .bub{background:var(--cream-light);border-bottom-left-radius:6px}
+  .row.bot .bub a{color:var(--accent);font-weight:600}
+  .row.err .bub{background:#fdeceb;color:#8d2010}
+  .bub p{margin:0 0 8px} .bub p:last-child{margin:0}
+  .bub ul,.bub ol{margin:6px 0 8px;padding-left:20px} .bub li{margin:3px 0}
+  .bub h4{margin:11px 0 4px;font-size:15px;font-weight:600} .bub h4:first-child{margin-top:0}
+  .bub strong{font-weight:600}
+  .typing-row{display:flex;gap:10px;align-items:center;margin:8px 0}
+  .typing-bub{background:var(--cream-light);color:var(--accent);border-radius:18px;border-bottom-left-radius:6px;padding:14px 18px}
+  .composer{display:flex;align-items:center;gap:10px;border-top:1px solid var(--cream);padding:14px 16px;background:#fff}
+  .composer input{flex:1;min-width:0;border:1.5px solid var(--cream-dark);border-radius:999px;padding:13px 18px;
+    font-family:inherit;font-size:15px;color:var(--mulberry);outline:0;transition:border-color .16s,box-shadow .16s}
+  .composer input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(209,68,36,.12)}
+  .chat-foot{text-align:center;font-size:12.5px;color:rgba(56,25,38,.5);margin:15px 6px 0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 0}
+  .chip{border:1px solid var(--cream-dark);background:#fff;border-radius:999px;padding:9px 16px;font-family:inherit;
+    font-size:13.5px;font-weight:500;color:var(--mulberry);cursor:pointer}
+  .chip:hover{background:var(--mulberry);border-color:var(--mulberry);color:#fff}
+
+  /* ---------- closing CTA + footer ---------- */
+  .closing{background:var(--tangerine);color:var(--mulberry-dark);text-align:center;padding:80px 0}
+  .closing h2{margin-bottom:26px}
+  .closing .row2{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .foot{background:var(--mulberry);color:#fff;padding:64px 0 28px}
+  .foot-grid{display:grid;grid-template-columns:1.3fr repeat(4,1fr);gap:34px}
+  .foot h4{font-family:var(--body);font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(250,250,248,.5);margin:0 0 15px}
+  .foot ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .foot a{color:rgba(250,250,248,.82);text-decoration:none;font-size:15px}
+  .foot a:hover{color:#fff;text-decoration:underline}
+  .foot-brand img.logo{height:28px;filter:brightness(0) invert(1);margin-bottom:18px}
+  .foot-brand p{font-size:14px;color:rgba(250,250,248,.6);margin:0 0 20px;max-width:34ch}
+  .badges{display:flex;gap:12px;align-items:center}
+  .badges img{height:52px;background:#fff;border-radius:8px;padding:5px}
+  .foot-base{border-top:1px solid rgba(250,250,248,.14);margin-top:48px;padding-top:24px;display:flex;flex-wrap:wrap;gap:12px 22px;
+    align-items:center;font-size:13px;color:rgba(250,250,248,.55)}
+  .foot-base a{font-size:13px;color:rgba(250,250,248,.7)}
+  .foot-base .cc{margin-left:auto}
+  .disclaimer{margin:22px 0 0;font-size:11.5px;line-height:1.6;color:rgba(250,250,248,.36)}
+  @media(max-width:980px){ .foot-grid{grid-template-columns:1fr 1fr} }
+  @media(max-width:560px){ .foot-grid{grid-template-columns:1fr} .foot-base .cc{margin-left:0} }
+
+  .toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--mulberry);color:#fff;
+    padding:12px 20px;border-radius:12px;font-size:13.5px;font-weight:500;z-index:200;opacity:0;pointer-events:none;transition:opacity .2s}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- ============ utility bar ============ -->
+<div class="topbar">
+  <div class="topbar-in">
+    <a href="#" class="on">For Business</a>
+    <a href="https://prezzee.com.au/">For Personal</a>
+    <span class="region">
+      <img src="https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/671d1bdc31808340c6717385_au.svg" alt="" />
+      Australia (English)
+    </span>
+  </div>
+</div>
+
+<!-- ============ header ============ -->
+<header class="nav">
+  <div class="nav-in">
+    <a class="nav-logo" href="#" aria-label="Prezzee Business home">
+      <img src="https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/67868c1fd9fe02655477036e_prezzee-business-logo.png" alt="Prezzee Business" />
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#usecases">Prezzee for <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17L3 7h18z"/></svg></a>
+      <a href="#solutions">Solutions <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17L3 7h18z"/></svg></a>
+      <a href="#pricing">Pricing</a>
+      <a href="#brands">Brands &amp; cards</a>
+      <a href="#ask">Contact us</a>
+    </nav>
+    <button class="burger" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg></button>
+    <div class="nav-cta">
+      <a class="btn btn-outline btn-sm" href="#">Log in</a>
+      <a class="btn btn-primary btn-sm" href="#">Sign up</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ hero ============ -->
+<section class="hero">
+  <div class="hero-in">
+    <div>
+      <h1>Digital gift cards to engage, recognise, and support at scale</h1>
+      <p class="lede">Personalise and bulk send in minutes to employees, customers, and communities.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#">Sign up for free</a>
+        <a class="btn btn-outline-light" href="#ask">Ask a question</a>
+      </div>
+      <p class="hero-trust">
+        <span><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>400+ retailer brands</span>
+        <span><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>No setup fees</span>
+        <span><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>ISO 27001 certified</span>
+      </p>
+    </div>
+    <div class="cardstack" aria-hidden="true">
+      <div class="gcard c1"><span class="brandline">Prezzee Smart</span><span class="amt">$100</span><span class="gfoot"><em>eGift Card</em><em>AUD</em></span></div>
+      <div class="gcard c2"><span class="brandline">Thanks, team</span><span class="amt">$50</span><span class="gfoot"><em>eGift Card</em><em>AUD</em></span></div>
+      <div class="gcard c3"><span class="brandline">With our thanks</span><span class="amt">$25</span><span class="gfoot"><em>eGift Card</em><em>AUD</em></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ brand marquee ============ -->
+<div class="marquee" id="brands"><div class="marquee-track" id="brandTrack"></div></div>
+
+<!-- ============ why choose ============ -->
+<section class="sec">
+  <div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">Why choose Prezzee Business</p>
+      <h2>Bulk gifting, without the busywork</h2>
+    </div>
+    <div class="why" id="why"></div>
+  </div>
+</section>
+
+<!-- ============ how it works ============ -->
+<section class="sec cream">
+  <div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">See how it works</p>
+      <h2>Four steps from brief to delivered</h2>
+    </div>
+    <div class="steps" id="steps"></div>
+    <div class="steps-cta">
+      <a class="btn btn-mulberry" href="#">Launch portal tour</a>
+      <a class="btn btn-outline" href="#ask">Book a demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ use cases ============ -->
+<section class="sec" id="usecases">
+  <div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">How businesses use Prezzee</p>
+      <h2>One platform, every gifting moment</h2>
+    </div>
+    <div class="usecases" id="ucGrid"></div>
+  </div>
+</section>
+
+<!-- ============ solutions ============ -->
+<section class="sec superlight" id="solutions">
+  <div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">Discover ways to gift in bulk</p>
+      <h2>Pick the way that fits your workflow</h2>
+    </div>
+    <div class="solutions" id="solGrid"></div>
+  </div>
+</section>
+
+<!-- ============ pricing ============ -->
+<section class="sec" id="pricing">
+  <div class="shell">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Pricing</p>
+        <h2>Pay for the gift cards, not the platform</h2>
+        <p class="lede">You can start sending gift cards in bulk right now and use all our core features, at no cost.
+          You'll only pay for the gift cards you're buying.</p>
+        <div class="split-actions">
+          <a class="btn btn-primary" href="#">Sign up for free</a>
+          <a class="btn btn-outline" href="#ask">Learn more</a>
+        </div>
+      </div>
+      <div class="plaque">
+        <div class="big">$0</div>
+        <div class="cap">to set up your account</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>No account or registration fees</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>No delivery fees on email gifts</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>Flat 3% on credit card checkout (VISA, Mastercard, AMEX)</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>Optional SMS delivery at 50&cent; per SMS</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ smart card ============ -->
+<section class="sec cream">
+  <div class="shell">
+    <div class="split flip">
+      <div class="split-visual">
+        <div class="smartcard">
+          <div class="sc-top"><span class="sc-logo">Prezzee Smart Card</span><span class="sc-bal">$100.00 AUD</span></div>
+          <div class="brandgrid" id="scBrands"></div>
+          <p class="sc-note">Recipients swap all in one place, or split it across their favourites.</p>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">Prezzee Smart Card</p>
+        <h2>One gift card that unlocks endless options</h2>
+        <p class="lede">Recipients can choose how to spend their <strong>Prezzee Smart Card</strong> across
+          <strong>hundreds of brands</strong> &mdash; whether it's all in one place, or split across their favourites.<br /><br />
+          Put your brand front and centre of the Smart Card, and personalise it with your company branding, a written note, or video.</p>
+        <div class="split-actions"><a class="btn btn-mulberry" href="#">Learn more</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ testimonials ============ -->
+<section class="sec">
+  <div class="shell">
+    <div class="sec-head">
+      <p class="eyebrow">Our customers</p>
+      <h2>Success stories</h2>
+    </div>
+    <div class="quotes" id="quotes"></div>
+    <div class="steps-cta">
+      <a class="btn btn-primary" href="#">Sign up for free</a>
+      <a class="btn btn-outline" href="#ask">Book a demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================================
+     ASK SECTION — the live page's collapsible FAQ list, replaced by an
+     ask bar + quick options wired straight into the Ada agent.
+     ===================================================================== -->
+<section class="sec ask-sec" id="ask">
+  <div class="shell">
+
+    <!-- ---- ask panel (default) ---- -->
+    <div id="askPanel">
+      <div class="sec-head">
+        <p class="eyebrow">FAQs</p>
+        <h2 id="askTitle">Ask us anything</h2>
+        <p class="lede" id="askSubtitle"></p>
+      </div>
+
+      <div class="ask-wrap">
+        <form class="askbar" id="askForm" autocomplete="off">
+          <span class="avatar" aria-hidden="true" id="askAvatar"></span>
+          <label class="sr-only" for="askInput">Ask a question</label>
+          <input id="askInput" placeholder="Ask a question, e.g. What are the payment methods available?" />
+          <button class="send" id="askSend" type="submit"><span>Ask</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+        </form>
+        <p class="ask-hint" id="askHint"></p>
+      </div>
+
+      <div class="warn" id="connWarn" hidden></div>
+
+      <div class="thinking" id="thinking" hidden>
+        <span class="avatar sm" aria-hidden="true" id="thinkAvatar"></span>
+        <span id="thinkText">Looking that up&hellip;</span>
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+
+      <p class="cluster-label">Popular questions</p>
+      <div class="cluster" id="options"></div>
+
+      <div class="ask-more">
+        <a class="btn btn-outline" id="hubLink" href="https://help.prezzee.com/" target="_blank" rel="noopener">Visit the help hub</a>
+      </div>
+    </div>
+
+    <!-- ---- conversation panel (swaps in on the first question) ---- -->
+    <div id="chatPanel" hidden>
+      <div class="sec-head" style="margin-bottom:34px">
+        <p class="eyebrow">FAQs</p>
+        <h2>Ask us anything</h2>
+      </div>
+      <div class="chatwrap">
+        <div class="chat">
+          <div class="chat-head">
+            <span class="avatar" aria-hidden="true" id="chatAvatar"></span>
+            <div class="who">
+              <div class="nm"><span id="botName">Prezzee Assistant</span><span class="led" id="led" title="Connected"></span></div>
+              <div class="sub" id="botSub">AI Assistant &middot; Prezzee Business</div>
+            </div>
+            <button class="linkbtn" id="btnBack">Back to FAQs</button>
+            <button class="linkbtn" id="btnNew">New conversation</button>
+          </div>
+          <div class="msgs" id="msgs" role="log" aria-live="polite" aria-label="Conversation"></div>
+          <form class="composer" id="chatForm" autocomplete="off">
+            <label class="sr-only" for="chatInput">Reply</label>
+            <input id="chatInput" placeholder="Type your reply&hellip;" />
+            <button class="send" id="chatSend" type="submit"><span>Send</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+          </form>
+        </div>
+        <p class="chat-foot" id="chatFoot"></p>
+        <div class="chips" id="chatChips"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ closing CTA ============ -->
+<section class="closing">
+  <div class="shell">
+    <h2>Start gifting today</h2>
+    <div class="row2">
+      <a class="btn btn-mulberry" href="#">Sign up for free</a>
+      <a class="btn btn-outline" href="#ask">Book a demo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ footer ============ -->
+<footer class="foot">
+  <div class="shell">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img class="logo" src="https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/67868c1fd9fe02655477036e_prezzee-business-logo.png" alt="Prezzee Business" />
+        <p>Digital gift cards to engage, recognise, and support at scale.</p>
+        <div class="badges">
+          <img src="https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/6791c9765577174b16dde067_27001-iso-certified-logo.png" alt="ISO 27001 certified" />
+        </div>
+      </div>
+      <div>
+        <h4>Prezzee For</h4>
+        <ul>
+          <li><a href="#usecases">Employee Engagement</a></li>
+          <li><a href="#usecases">Customer Acquisition &amp; Loyalty</a></li>
+          <li><a href="#usecases">Sales Incentives &amp; Rewards</a></li>
+          <li><a href="#usecases">Relief &amp; Aid</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="#solutions">Prezzee Portal</a></li>
+          <li><a href="#solutions">Prezzee Campaigns</a></li>
+          <li><a href="#solutions">Prezzee API</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#">Prezzee Smart Card</a></li>
+          <li><a href="#">PrezzeePay Partnerships</a></li>
+          <li><a href="#brands">Brands &amp; cards</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#ask">Contact us</a></li>
+          <li><a href="#">Work with us</a></li>
+        </ul>
+        <h4 style="margin-top:26px">Follow Us</h4>
+        <ul>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <div>
+        <a href="#">Terms of Sale</a> &nbsp;
+        <a href="#">Terms of Service</a> &nbsp;
+        <a href="#">Privacy Policy</a> &nbsp;
+        <a href="#">Cookie Settings</a> &nbsp;
+        <a href="#">GDPR</a>
+      </div>
+      <div class="cc">&copy;2026 Prezzee Pty Limited ACN 602 963 422 and/or its affiliates. All rights reserved</div>
+    </div>
+    <p class="disclaimer">DISCLAIMER: "Prezzee" is a trade mark of PREZZEE LIMITED (NZBN 9429049008357) and its ultimate holding
+      company, PREZZEE PTY LIMITED (ACN 602 963 422), a company incorporated in Australia, and "Prezzee" is not associated in any
+      way with "PREZZY&reg;", "PREZZY&reg; Card" or EPAY NEW ZEALAND LIMITED (NZBN 9429036203420) and PREZZY&reg; is a registered
+      trade mark of Epay New Zealand Limited. &mdash; This page is a UI mock-up for demonstration purposes.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================================
+   vvv  SETTINGS - EDIT HERE, NOTHING ELSE  vvv
+   Ada wiring follows the proven headless pattern: window.adaSettings is defined
+   BEFORE embed2.js, the script tag at the bottom of <body> auto-bootstraps the
+   conversation, and reset() mints a fresh conversation on every page load.
+   ============================================================================ */
+const CONFIG = {
+  ada: {
+    handle: "prezzee-business",           // Ada bot handle behind the ask bar
+    cluster: "",                          // "" = US default; else "us2" / "eu" / ...
+    newConversationOnLoad: true,          // fresh Ada conversation per page load
+  },
+  bot: {
+    name: "Prezzee Assistant",
+    role: "AI Assistant · Prezzee Business",
+    subtitle: "Our AI assistant answers instantly, day or night. Type a question, or pick one of the popular topics below.",
+    askHint: "Powered by AI · answers on pricing, payments, orders and eGift card redemption.",
+    disclaimer: "This is an AI assistant and may occasionally be inaccurate. For anything account-specific, contact the Prezzee Business team.",
+    followUpChips: [
+      "I'd like to speak to a person",
+      "Can you explain that more simply?",
+      "Where do I find this in the portal?",
+    ],
+  },
+  timing: {
+    replyTimeoutMs: 45000,   // no bot reply within this -> show a fallback bubble
+    typingTailMs:   2500,    // keep the typing indicator this long after a bubble (multi-bubble answers)
+  },
+  /* Quick options. `send` is the EXACT text pushed to Ada with sendMessage()
+     (deterministic - no LLM in the middle), so each chip is a repeatable test case. */
+  options: [
+    { label:"Pricing & fees", accent:true,
+      send:"What does it cost to set up a Prezzee Business account, and what fees apply?" },
+    { label:"Payment methods", accent:true,
+      send:"What are the payment methods available on Prezzee Business?" },
+    { label:"Receiving an eGift card", accent:true,
+      send:"I need help receiving an eGift card - I was sent one but I am not sure how to get it." },
+    { label:"Redeeming an eGift card", accent:true,
+      send:"I need help redeeming my eGift card. How do I claim it and where does it go?" },
+    { label:"Using my eGift card", accent:true,
+      send:"How do I use my Prezzee eGift card in store and online, and can I swap it for another brand?" },
+    { label:"What is Prezzee Business?",
+      send:"What is Prezzee Business and what is it used for?" },
+    { label:"Placing a bulk order",
+      send:"What are the ways to place an order on Prezzee Business, including bulk orders and CSV uploads?" },
+    { label:"Accounts & users",
+      send:"How many accounts can my business have on Prezzee Business, and how many users per account?" },
+  ],
+  // Retailer logos across the marquee (live Prezzee CDN assets).
+  brandLogos: [
+    "6a42123fa350acb9e3c9cd14_uber-rides-1500x950-1-2.avif",
+    "6a4210dca1934e03bfc44456_image-2659.avif","6a4211497c33c1f2b0badfe0_image-2660.avif",
+    "6a421167285d4d6407b50934_image-2661.avif","6a421184c6600a4282fd4700_image-2662.avif",
+    "6a421197b8acef9eb8d2efc1_image-2663.avif","6a4211acd7b838a82b372d54_image-2664.avif",
+    "6a4211c73268b00e90f8100d_image-2665.avif","6a4211e1285d4d6407b575a2_image-2666.avif",
+    "6a42120cefbf7671c2aec61a_image-2667.avif","6a42122fc687f39f1920c970_image-2668.avif",
+    "6a4212634e8dc30fe09d1a7f_image-2670.avif","6a421276d135e1e2adc11262_image-2671.avif",
+    "6a42128790561d05598b5d0a_image-2672.avif","6a4212a99403cdbcaebeb844_image-2673.avif",
+  ],
+  why: [
+    { title:"Hundreds of brands", body:"400+ retailer brands to choose from", tint:"var(--peach-light)",
+      icon:'<path d="M20 6h-2.18A3 3 0 0 0 12 2.55 3 3 0 0 0 6.18 6H4a2 2 0 0 0-2 2v2h20V8a2 2 0 0 0-2-2zM3 12v8a2 2 0 0 0 2 2h6v-10H3zm10 10h6a2 2 0 0 0 2-2v-8h-8v10z"/>' },
+    { title:"Thousands of businesses", body:"Trusted by businesses globally for corporate gifting", tint:"var(--lilac-super-light)",
+      icon:'<path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zM8 11c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>' },
+    { title:"Free to sign up", body:"No setup fees - just pay for the gift cards", tint:"var(--lemon-light)",
+      icon:'<path d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22zm1 17h-2v-1.2a3.4 3.4 0 0 1-2.8-2.4l1.8-.7c.2.9.9 1.5 2 1.5 1 0 1.6-.5 1.6-1.2 0-.6-.4-1-1.7-1.4-1.9-.5-3.2-1.2-3.2-3 0-1.4 1-2.4 2.3-2.7V6h2v1.9c1.2.3 2 1.1 2.3 2.2l-1.8.7c-.2-.7-.7-1.1-1.5-1.1-.9 0-1.4.4-1.4 1 0 .6.5.9 1.8 1.3 2 .6 3.1 1.3 3.1 3.1 0 1.5-1 2.6-2.6 2.9V18z"/>' },
+  ],
+  steps: [
+    { n:"1", title:"Add", body:"Add recipients one at a time, or upload a CSV for a bulk send." },
+    { n:"2", title:"Choose", body:"Pick from 400+ retailer brands, or the Prezzee Smart Card." },
+    { n:"3", title:"Personalise", body:"Add your branding, a written note, or a video message." },
+    { n:"4", title:"Send & track", body:"Schedule delivery by email or SMS, then track every card." },
+  ],
+  useCases: [
+    { title:"Employee engagement & recognition", body:"Celebrate milestones, boost morale, or foster employee engagement.",
+      cta:"Explore employee rewards", img:"67231682e5e71257d0ba031f_usecase-ee.avif" },
+    { title:"Customer acquisition & loyalty", body:"Win new customers, reward loyalty, and create meaningful customer connections.",
+      cta:"Explore customer rewards", img:"67231682875170c31d57228c_usecase-cal.avif" },
+    { title:"Sales incentives & rewards", body:"Boost sales team performance and morale, and recognise achievements.",
+      cta:"Explore sales incentives", img:"6723168265445e2eb88d9118_usecase-si.avif" },
+    { title:"Relief & aid", body:"Provide timely and meaningful support for initiatives, programs, and communities.",
+      cta:"Explore relief options", img:"672316827d3fa7ad2e9b6c57_usecase-ra.avif" },
+  ],
+  solutions: [
+    { name:"Prezzee", sub:"Portal", body:"From 10 to 10,000 gift cards: our portal streamlines your bulk gifting experience.",
+      img:"67231067875170c31d5321d8_product-icon-pp.avif" },
+    { name:"Prezzee", sub:"Campaigns", body:"Run large-scale campaigns and only pay for the gift cards that are redeemed.",
+      img:"67231067cb28776f5aa8f667_product-icon-pc.avif" },
+    { name:"Prezzee", sub:"API", body:"Power your own custom solutions and integrate Prezzee gift cards into your systems.",
+      img:"67231067fccc306fc10aa6b2_product-icon-pa.avif" },
+  ],
+  quotes: [
+    { q:"The Prezzee Business portal is quick and easy to use. Their customisable range of digital gift cards empowers our emergency relief clients with much-needed choices to address their primary needs.", who:"Simon", role:"Emergency Relief Co-ordinator" },
+    { q:"Prezzee helps our business to provide an integrated solution for customers, enabling them to receive instant rewards for using our service.", who:"Clay", role:"Business Analyst" },
+    { q:"We've boosted engagement rates and delighted our families with versatile gift card options, all complemented by easy-to-use reporting tools.", who:"Samantha", role:"Customer Experience Campaign Analyst" },
+    { q:"Prezzee was instrumental in facilitating promotional partner agreements with select brands and providing promotion winners with a user-friendly digital eGift card experience.", who:"Laura", role:"Account Manager" },
+    { q:"Branding gift cards with our logo and customising them with selected retailers has been fantastic. Best of all, Prezzee is super easy to use!", who:"Kelly", role:"Executive Assistant" },
+    { q:"Prezzee's API integration transformed how we deliver. What used to take days of manual work now happens instantly and seamlessly. It's been a game-changer for both our team and our clients.", who:"Andrew Koster", role:"General Manager, Operations" },
+  ],
+  // Canned greeting lines are swallowed so they never look like the answer.
+  greetingPatterns: [
+    /^(hi|hello|hey)\b.{0,80}$/i,
+    /^hello! i'?m an ai/i,
+    /i'?m still learning/i,
+    /how (may|can) i (help|assist) you/i,
+    /^welcome to prezzee/i,
+  ],
+};
+/* ^^^  END SETTINGS  ^^^ */
+
+const CDN = "https://cdn.prod.website-files.com/67041c1053d36118ffdf48ee/";
+const CDN2 = "https://cdn.prod.website-files.com/67041c1053d36118ffdf48fb/";
+const $  = s => document.querySelector(s);
+const delay = ms => new Promise(r=>setTimeout(r,ms));
+const escapeHTML = s => (s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const GLYPH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-4.97 0-9 3.58-9 8 0 2.53 1.33 4.78 3.4 6.26L6 22l4.2-2.2c.58.09 1.18.14 1.8.14 4.97 0 9-3.58 9-8s-4.03-8-9-8zm-3.6 9.2a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm3.6 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6zm3.6 0a1.3 1.3 0 1 1 0-2.6 1.3 1.3 0 0 1 0 2.6z"/></svg>';
+const ARROW = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h12l-5-5 1.4-1.4L21 12l-7.6 7.4L12 18l5-5H5z"/></svg>';
+
+const state = {
+  adaReady:false, convReady:false,
+  view:'ask',                // 'ask' | 'chat'
+  awaiting:false,            // a question is in flight
+  msgs:[],                   // {who:'me'|'bot'|'err', text, ts}
+  swallowed:null,            // a canned greeting we held back, in case it's all we ever get
+  typingTimer:null, timeoutTimer:null,
+  demo:/[?&]demo\b/i.test(location.search),
+};
+const shownReply = () => state.msgs.some(m=>m.who==='bot');
+
+/* ============ small helpers ============ */
+const toastEl=$('#toast');
+function toast(m){ toastEl.textContent=m; toastEl.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(()=>toastEl.classList.remove('show'),3200); }
+function setLed(cls,title){ const l=$('#led'); if(!l) return; l.className='led'+(cls?' '+cls:''); l.title=title||''; }
+function errDetail(err){ if(!err) return 'unknown'; try{ const o={}; for(const k of Object.getOwnPropertyNames(err)) o[k]=err[k]; return JSON.stringify(o);}catch(e){ return String(err);} }
+// Transient failures worth retrying: rate limits and the "chat frame did not respond" window right after reset().
+function isTransient(err){ return /rate_limited|in flight|did not respond|timed?\s*out|timeout/i.test((err&&err.message)||String(err)); }
+async function sendToAda(text){
+  let last;
+  for(let i=1;i<=5;i++){
+    try{ return await window.adaEmbed.sendMessage(text); }
+    catch(err){ last=err; if(!isTransient(err)||i===5) throw err;
+      console.warn('[ada] send retry '+i+': '+((err&&err.message)||err)); await delay(700*i); }
+  }
+  throw last;
+}
+
+/* ============ markdown -> HTML for bot bubbles ============ */
+function mdInline(s){
+  return escapeHTML(s)
+    .replace(/\[([^\]]+)\]\((https?:[^)\s]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/(^|[\s(])((?:https?:\/\/)[^\s<)]+)/g,'$1<a href="$2" target="_blank" rel="noopener">$2</a>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    // remaining single-asterisk pairs are italics (Ada emits *like this*)
+    .replace(/(?<![\w*])\*(?!\s)([^*\n]+?)\*(?![\w*])/g,'<em>$1</em>')
+    .replace(/(?<!\w)_(.+?)_(?!\w)/g,'<em>$1</em>');
+}
+function renderMD(text){
+  let html='', inList=false, listTag='ul';
+  const close=()=>{ if(inList){ html+='</'+listTag+'>'; inList=false; } };
+  for(const raw of String(text||'').split('\n')){
+    const line=raw.replace(/\s+$/,'');
+    if(!line.trim()){ close(); continue; }
+    const head=line.match(/^\*\*(.+?)\*\*:?\s*$/) || line.match(/^#{1,4}\s+(.*)$/);
+    const bullet=line.match(/^\s*[-*•]\s+(.*)$/);
+    const num=line.match(/^\s*(\d+)[.)]\s+(.*)$/);
+    if(head){ close(); html+='<h4>'+mdInline(head[1])+'</h4>'; continue; }
+    if(bullet){ if(inList&&listTag!=='ul') close(); if(!inList){ listTag='ul'; html+='<ul>'; inList=true; } html+='<li>'+mdInline(bullet[1])+'</li>'; continue; }
+    if(num){ if(inList&&listTag!=='ol') close(); if(!inList){ listTag='ol'; html+='<ol>'; inList=true; } html+='<li>'+mdInline(num[2])+'</li>'; continue; }
+    close(); html+='<p>'+mdInline(line)+'</p>';
+  }
+  close();
+  return html;
+}
+
+/* ============ marketing page render ============ */
+function buildPage(){
+  // brand marquee, doubled so the -50% keyframe loops seamlessly
+  const logos = CONFIG.brandLogos.map(f=>`<img src="${CDN2}${f}" alt="" loading="lazy" onerror="this.remove()" />`).join('');
+  $('#brandTrack').innerHTML = logos + logos;
+
+  $('#why').innerHTML = CONFIG.why.map(w=>`
+    <div class="why-card">
+      <div class="why-ico" style="background:${w.tint}"><svg viewBox="0 0 24 24" fill="var(--mulberry)">${w.icon}</svg></div>
+      <h3>${escapeHTML(w.title)}</h3><p>${escapeHTML(w.body)}</p>
+    </div>`).join('');
+
+  $('#steps').innerHTML = CONFIG.steps.map((s,i)=>`
+    <div class="step s${i+1}"><span class="num">${s.n}</span>
+      <div><h3>${escapeHTML(s.title)}</h3><p>${escapeHTML(s.body)}</p></div>
+    </div>`).join('');
+
+  $('#ucGrid').innerHTML = CONFIG.useCases.map(u=>`
+    <article class="uc">
+      <img src="${CDN}${u.img}" alt="" loading="lazy" />
+      <div class="uc-body">
+        <h3>${escapeHTML(u.title)}</h3><p>${escapeHTML(u.body)}</p>
+        <a class="arrowlink" href="#">${escapeHTML(u.cta)} ${ARROW}</a>
+      </div>
+    </article>`).join('');
+
+  $('#solGrid').innerHTML = CONFIG.solutions.map(s=>`
+    <article class="sol">
+      <img class="ico" src="${CDN}${s.img}" alt="" loading="lazy" onerror="this.remove()" />
+      <h3>${escapeHTML(s.name)}<em>${escapeHTML(s.sub)}</em></h3>
+      <p>${escapeHTML(s.body)}</p>
+      <a class="arrowlink" href="#">Learn More ${ARROW}</a>
+    </article>`).join('');
+
+  $('#quotes').innerHTML = CONFIG.quotes.map(q=>`
+    <figure class="quote">
+      <span class="mark" aria-hidden="true">&ldquo;</span>
+      <p>${escapeHTML(q.q)}</p>
+      <figcaption class="who"><b>${escapeHTML(q.who)}</b><span>${escapeHTML(q.role)}</span></figcaption>
+    </figure>`).join('');
+
+  // Smart Card face: a handful of the retailer logos, knocked out white
+  $('#scBrands').innerHTML = CONFIG.brandLogos.slice(0,8)
+    .map(f=>`<div><img src="${CDN2}${f}" alt="" loading="lazy" onerror="this.parentNode.remove()" /></div>`).join('');
+}
+
+/* ============ ask section render ============ */
+function buildAsk(){
+  $('#askSubtitle').textContent = CONFIG.bot.subtitle;
+  $('#askHint').textContent     = CONFIG.bot.askHint;
+  $('#thinkText').textContent   = CONFIG.bot.name+' is looking that up…';
+  $('#botName').textContent     = CONFIG.bot.name;
+  $('#botSub').textContent      = CONFIG.bot.role;
+  $('#chatFoot').textContent    = CONFIG.bot.disclaimer;
+  [$('#askAvatar'),$('#thinkAvatar'),$('#chatAvatar')].forEach(el=>{ if(el) el.innerHTML=GLYPH; });
+
+  $('#options').innerHTML = CONFIG.options.map((o,i)=>
+    `<button class="qchip${o.accent?' accent':''}" data-opt="${i}">${escapeHTML(o.label)}</button>`).join('');
+
+  $('#chatChips').innerHTML = CONFIG.bot.followUpChips
+    .map(c=>`<button class="chip" data-chip="${escapeHTML(c)}">${escapeHTML(c)}</button>`).join('');
+}
+
+/* ============ conversation render ============ */
+function renderMsgs(){
+  const box=$('#msgs');
+  box.innerHTML = state.msgs.map(m=>{
+    const cls = m.who==='me' ? 'me' : (m.who==='err' ? 'bot err' : 'bot');
+    const body = m.who==='me' ? escapeHTML(m.text).replace(/\n/g,'<br>') : renderMD(m.text);
+    const av   = m.who==='me' ? '' : `<span class="avatar sm" aria-hidden="true">${GLYPH}</span>`;
+    return `<div class="row ${cls}">${av}<div class="bub">${body}</div></div>`;
+  }).join('') + (state.awaiting ? `<div class="typing-row"><span class="avatar sm" aria-hidden="true">${GLYPH}</span>
+      <div class="typing-bub"><span class="dots"><i></i><i></i><i></i></span></div></div>` : '');
+  box.scrollTop = box.scrollHeight;
+}
+function showChat(){
+  if(state.view==='chat'){ renderMsgs(); return; }
+  state.view='chat';
+  $('#askPanel').hidden=true; $('#chatPanel').hidden=false;
+  renderMsgs();
+  window.scrollTo({top:Math.max(0,$('#ask').offsetTop-60),behavior:'smooth'});
+  setTimeout(()=>$('#chatInput').focus(),240);
+}
+function showAsk(){
+  state.view='ask';
+  $('#chatPanel').hidden=true; $('#askPanel').hidden=false;
+  $('#thinking').hidden = !state.awaiting;
+  window.scrollTo({top:Math.max(0,$('#ask').offsetTop-60),behavior:'smooth'});
+}
+
+/* ============ the one path every question goes through ============ */
+function push(who,text){ state.msgs.push({who,text,ts:Date.now()}); }
+async function ask(text){
+  const q=(text||'').trim(); if(!q) return;
+  if(state.awaiting){ toast(CONFIG.bot.name+' is still answering — one moment…'); return; }
+
+  push('me',q);
+  state.awaiting=true;
+  $('#askInput').value=''; $('#chatInput').value='';
+  $('#askSend').disabled=true; $('#chatSend').disabled=true;
+  // Stay on the FAQ panel until Ada's first reply lands (then the panel swaps).
+  if(state.view==='ask') $('#thinking').hidden=false; else renderMsgs();
+  setLed('busy',CONFIG.bot.name+' is typing');
+
+  clearTimeout(state.timeoutTimer);
+  state.timeoutTimer=setTimeout(()=>{
+    if(!state.awaiting) return;
+    finishTurn();
+    // If the only thing Ada sent was a canned greeting we held back, show it rather than an error.
+    if(!shownReply() && state.swallowed){ push('bot',state.swallowed); state.swallowed=null; }
+    else push('err',"Sorry — I didn't get a response in time. Please try again, or reach the Prezzee Business team via Contact us.");
+    showChat();
+  }, CONFIG.timing.replyTimeoutMs);
+
+  if(state.demo){ await delay(1400); handleBotMessage(demoReply(q)); return; }
+
+  if(!state.adaReady || !state.convReady){
+    finishTurn();
+    push('err','Still connecting to '+CONFIG.bot.name+'. Please try again in a moment.');
+    showChat(); return;
+  }
+  try{
+    const sent=await sendToAda(q);
+    console.log('[prezzee-ask] sent to Ada, id=', sent&&sent.id, 'len='+q.length);
+  }catch(err){
+    finishTurn();
+    const reason=(err&&(err.message||err.code))||'(no message)';
+    console.error('[prezzee-ask] send failed:', reason, '| full:', errDetail(err));
+    push('err',"I couldn't send that to "+CONFIG.bot.name+' ('+reason+'). Please try again.');
+    showChat();
+  }
+}
+function finishTurn(){
+  state.awaiting=false;
+  clearTimeout(state.timeoutTimer);
+  $('#askSend').disabled=false; $('#chatSend').disabled=false;
+  $('#thinking').hidden=true;
+  setLed('','Connected');
+}
+
+/* ============ inbound: every bot message from Ada lands here ============ */
+function isGreeting(t){ return CONFIG.greetingPatterns.some(re=>re.test(t.trim())); }
+function handleBotMessage(body){
+  const text=(body||'').trim();
+  if(!text) return;
+  if(/##internal##/i.test(text)) return;                       // internal, never shown
+  // Ada's canned welcome can land either on connect or right after the first question. Either way
+  // it isn't the answer, so hold it back - the reply timeout surfaces it if it's all we ever get.
+  if(!shownReply() && isGreeting(text)){ state.swallowed=text; return; }
+
+  push('bot',text);
+  // Multi-bubble answers: keep the typing indicator alive briefly after each bubble.
+  clearTimeout(state.timeoutTimer);
+  clearTimeout(state.typingTimer);
+  state.awaiting=true;
+  state.typingTimer=setTimeout(()=>{ finishTurn(); renderMsgs(); }, CONFIG.timing.typingTailMs);
+  $('#askSend').disabled=false; $('#chatSend').disabled=false;
+  $('#thinking').hidden=true;
+  showChat();                                                  // <- the FAQ panel becomes the conversation
+  renderMsgs();
+}
+
+/* ============ wiring ============ */
+buildPage();
+buildAsk();
+$('#askForm').addEventListener('submit',e=>{ e.preventDefault(); ask($('#askInput').value); });
+$('#chatForm').addEventListener('submit',e=>{ e.preventDefault(); ask($('#chatInput').value); });
+$('#options').addEventListener('click',e=>{
+  const o=e.target.closest('[data-opt]'); if(o) ask(CONFIG.options[+o.dataset.opt].send);
+});
+$('#chatChips').addEventListener('click',e=>{ const c=e.target.closest('[data-chip]'); if(c) ask(c.dataset.chip); });
+$('#btnBack').addEventListener('click',()=>showAsk());
+$('#btnNew').addEventListener('click',()=>location.reload());
+
+/* ============================================================
+   ADA HEADLESS CONFIG - defined BEFORE embed2.js (auto-start).
+   Subscribe on BOTH onAdaEmbedLoaded and adaReadyCallback (guarded),
+   because events can fire before the first subscription lands.
+   ============================================================ */
+let adaSubscribed=false;
+function subscribeToAda(){
+  if(adaSubscribed || !(window.adaEmbed && window.adaEmbed.subscribeEvent)) return;
+  adaSubscribed=true;
+  try{
+    window.adaEmbed.subscribeEvent('ada:message:received',(data)=>{
+      const m=(data&&data.message)||data||{};
+      if(m.role==='user') return;
+      handleBotMessage(m.body||'');
+    });
+  }catch(e){ adaSubscribed=false; console.warn('[ada] subscribe failed',e); }
+}
+
+// Ada persists the chatter, so without reset() a reload would resume the previous
+// conversation. reset() mints a fresh chatter => a brand-new conversation per load.
+let didReset=false;
+async function freshConversation(){
+  if(didReset) return; didReset=true;
+  if(!CONFIG.ada.newConversationOnLoad || !(window.adaEmbed && window.adaEmbed.reset)){
+    state.convReady=true; setLed('','Connected'); return;
+  }
+  try{
+    await window.adaEmbed.reset();     // new chatter => new conversation on Ada
+    console.log('[ada] reset - fresh conversation for this page load');
+  }catch(e){ console.warn('[ada] reset failed, using existing conversation:',(e&&e.message)||e); }
+  await delay(600);                    // let the refreshed chat frame become responsive
+  state.convReady=true;
+  setLed('','Connected');
+}
+
+window.adaSettings = {
+  handle: CONFIG.ada.handle,
+  headless: true,
+  enableProgrammaticControl: true,     // required for sendMessage + events
+  ...(CONFIG.ada.cluster ? { cluster: CONFIG.ada.cluster } : {}),
+  adaReadyCallback: ()=>{ state.adaReady=true; $('#connWarn').hidden=true; subscribeToAda(); console.log('[ada] ready'); freshConversation(); },
+  onAdaEmbedLoaded: ()=>{ subscribeToAda(); },
+};
+
+// Watchdog: the Ada chat frame is CSP-gated by the bot's iframe_allow_list. When this origin
+// isn't on that list the SDK loads, the frame is blocked, adaReadyCallback never fires and NO
+// conversation is created - silently. Say it out loud, with the origin that needs whitelisting.
+if(!state.demo) setTimeout(()=>{
+  if(state.adaReady) return;
+  const w=$('#connWarn');
+  w.innerHTML = '<b>Not connected to '+escapeHTML(CONFIG.bot.name)+' — no conversation was created.</b><br>'+
+    'The Ada chat frame never signalled ready, so <code>'+escapeHTML(location.origin)+'</code> is most likely missing from the '+
+    '<code>iframe_allow_list</code> on <code>'+escapeHTML(CONFIG.ada.handle)+'</code> (the page must also be HTTPS). '+
+    'Add this exact origin in the Ada dashboard, or open <code>?demo</code> for the offline preview.';
+  w.hidden=false;
+  setLed('off','Not connected');
+  console.error('[prezzee-ask] Ada never became ready - check iframe_allow_list for '+location.origin);
+}, 9000);
+
+setLed('off','Connecting…');
+if(state.demo){ state.adaReady=state.convReady=true; setLed('','Offline preview'); console.log('[prezzee-ask] ?demo - canned replies, Ada not contacted'); }
+
+/* ---- ?demo canned replies (grounded in the live prezzee.com FAQ copy) ---- */
+function demoReply(q){
+  const l=q.toLowerCase();
+  if(/cost|fee|pricing|price|surcharge/.test(l))
+    return "**What it costs**\nPrezzee Business is **free** to use — no account fees, no registration fees, and no delivery fees for email gifts. You only pay for the gift cards you buy.\n\n- **3% flat** surcharge when checking out with a credit card (VISA, Mastercard, AMEX)\n- **50¢ per SMS** — SMS delivery is optional\n\nWould you like me to walk you through signing up?";
+  if(/payment|pay |visa|amex|mastercard|wire|invoice|deposit/.test(l))
+    return "**Payment methods**\nYou can pay for an order in three ways:\n\n1. **Credit card** — VISA, AMEX or Mastercard (3% surcharge)\n2. **Wire transfer** — applied against the order\n3. **Pre-load your account** — choose *Deposit Funds* on the dashboard homepage and draw down from the float\n\nAll eGift cards are sent out upon receipt of payment. Which method suits your team?";
+  if(/receiv/.test(l))
+    return "**Receiving an eGift card**\nYour gift arrives by **email or SMS** from the sender. Look for the message and tap **Unwrap your gift**.\n\n- If the sender set a PIN, keep the **4-digit PIN** handy — you'll need it to unlock the gift\n- No PIN? You'll skip straight through to the next step\n\nCan't find the email? Check your spam or promotions folder. Would you like help searching for it?";
+  if(/redeem|claim|unwrap|pin/.test(l))
+    return "**Redeeming your eGift card**\n1. Find the gift email or SMS and click **Unwrap your gift**\n2. If prompted, enter your **4-digit PIN** to unlock the card\n3. Sign in or create a Prezzee account to save it\n4. The card lands in your **Prezzee Wallet**, ready to use or swap\n\neGift cards should be treated like cash. Anything else you'd like me to explain?";
+  if(/use|using|swap|wallet|print|in store/.test(l))
+    return "**Using your eGift card**\nYou can use it straight from the **Prezzee App or Wallet**, or print it to use in store.\n\n- Got a **Prezzee Smart eGift Card**? Tap **Swap Now** to exchange it for a retailer eGift card of your choice\n- You can spend it all with one brand, or split it across several\n\nWould you like the steps for swapping a Smart Card?";
+  if(/what is prezzee business|what.*used for|about/.test(l))
+    return "**About Prezzee Business**\nPrezzee Business is the only portal you'll need to send one or multiple eGift cards in bulk from your business to your recipients.\n\nTeams typically use it for:\n\n- **HR / EAs** — thank-yous, long-service recognition, overtime, special events\n- **Marketing** — acquisition and retention, referral campaigns\n- **Operations** — recognising overtime, or refunding as a gift card instead of cash\n- **Sales** — competitions, event prizes, and driving behaviour change\n\nWhich of these is closest to your use case?";
+  if(/order|bulk|csv|upload/.test(l))
+    return "**Placing an order**\nFrom the Prezzee Business dashboard you can place a **single or bulk order**.\n\n- Send the **same eGift card and same message** to many recipients, or\n- Upload a **CSV** with per-recipient details for different cards and different messaging\n\nHow many recipients are you planning to send to?";
+  if(/account|user|multiple|team|seat/.test(l))
+    return "**Accounts and users**\nYour business can have **multiple accounts** with Prezzee Business, and **multiple users** within each account — handy when separate teams or cost centres manage their own gifting.\n\nWould you like help setting up an extra account?";
+  if(/human|person|agent|someone|speak|call/.test(l))
+    return "Of course — I can pass you to the Prezzee Business team. Before I do, could you share your **name**, **company** and the best **email** to reach you on?";
+  return "Happy to help with that. Could you give me a little more detail — for example whether this is about **pricing**, **placing an order**, or **redeeming a gift card** you've received?";
+}
+</script>
+
+<!-- ===================== ADA DEBUG PANEL (append ?debug to the URL) ===================== -->
+<script>
+(function(){
+  if(!/[?&]debug\b/i.test(location.search)) return;
+  const MONO="ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace";
+  let open=true, evt=0, recv=0;
+  const seen=new Map();
+  const wrap=document.createElement('div');
+  wrap.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:99999;font-family:"+MONO+";font-size:11px;color:#e6edf3;background:rgba(13,17,23,.96);border-top:1px solid #30363d;backdrop-filter:blur(8px);max-height:45vh;overflow:hidden;transition:max-height .2s";
+  function b(){return "background:#21262d;color:#e6edf3;border:1px solid #30363d;border-radius:6px;padding:2px 8px;font-family:"+MONO+";font-size:11px;cursor:pointer";}
+  wrap.innerHTML='<div id="dbgbar" style="display:flex;gap:10px;align-items:center;background:#161b22;border-bottom:1px solid #30363d;padding:6px 10px;cursor:pointer;user-select:none">'+
+    '<b>ADA DEBUG</b><span id="dR" style="color:#d29922">loading</span><span id="dE" style="color:#7d8590">evts:0</span><span id="dV" style="color:#7d8590">recv:0</span><span id="dL" style="color:#7d8590">last:-</span>'+
+    '<span style="margin-left:auto;display:flex;gap:6px">'+
+      '<button data-a="msgs" style="'+b()+'">getMessages</button><button data-a="conv" style="'+b()+'">getConversation</button><button data-a="clear" style="'+b()+'">clear</button><span id="dT">v</span></span></div>'+
+    '<div id="dLog" style="overflow-y:auto;max-height:calc(45vh - 34px);padding:6px 10px 12px"></div>';
+  document.body.appendChild(wrap);
+  const logEl=wrap.querySelector('#dLog');
+  const ft=ts=>{const d=new Date(ts),p=(n,l=2)=>String(n).padStart(l,'0');return p(d.getHours())+':'+p(d.getMinutes())+':'+p(d.getSeconds())+'.'+p(d.getMilliseconds(),3);};
+  const ss=v=>{try{return typeof v==='string'?v:JSON.stringify(v,(_k,x)=>typeof x==='function'?'[fn]':x);}catch(e){return String(v);}};
+  const C={event:'#79c0ff',log:'#e6edf3',warn:'#d29922',error:'#f85149',probe:'#3fb950'};
+  function add(kind,label,detail){ const r=document.createElement('div');
+    r.style.cssText='margin-bottom:2px;white-space:pre-wrap;word-break:break-word';
+    r.innerHTML='<span style="color:#7d8590">'+ft(Date.now())+'</span> <span style="color:'+(C[kind]||'#e6edf3')+'">'+label+'</span>'+(detail?(' <span style="color:#7d8590">'+ss(detail).slice(0,600).replace(/</g,'&lt;')+'</span>'):'');
+    logEl.appendChild(r); while(logEl.children.length>250) logEl.removeChild(logEl.firstChild); logEl.scrollTop=logEl.scrollHeight; }
+  ['log','warn','error'].forEach(k=>{ const o=console[k].bind(console); console[k]=(...a)=>{try{add(k==='log'?'log':k,a.map(ss).join(' ').slice(0,320));}catch(e){} o(...a);}; });
+  function setReady(r){ const e=wrap.querySelector('#dR'); e.textContent=r?'ready':'loading'; e.style.color=r?'#3fb950':'#d29922'; }
+  function onEvent(key,data){ const fp=key+':'+ss(data),now=Date.now(); if(now-(seen.get(fp)||0)<250) return; seen.set(fp,now);
+    evt++; if(key==='ada:message:received') recv++;
+    wrap.querySelector('#dE').textContent='evts:'+evt; wrap.querySelector('#dV').textContent='recv:'+recv; wrap.querySelector('#dL').textContent='last:'+key;
+    if(key==='ada:ready') setReady(true); add('event',key,data); }
+  const EVENTS=['ada','ada:ready','ada:chat_frame_timeout','ada:message:sent','ada:message:received','ada:connection:change','ada:conversation:change','ada:end_conversation','ada:typing:start','ada:typing:stop'];
+  let sub=false;
+  function subscribeDebug(){ if(sub||!(window.adaEmbed&&window.adaEmbed.subscribeEvent)) return; sub=true;
+    EVENTS.forEach(k=>{try{Promise.resolve(window.adaEmbed.subscribeEvent(k,(d,ctx)=>onEvent((ctx&&ctx.eventKey)||k,d))).catch(e=>add('warn','subscribe '+k+' failed',e&&e.message));}catch(e){add('warn','subscribe '+k+' threw',e&&e.message);}});
+    add('probe','debug subscriptions attached',EVENTS.length+' keys'); }
+  const s=window.adaSettings||(window.adaSettings={});
+  const pL=s.onAdaEmbedLoaded; s.onAdaEmbedLoaded=function(){try{pL&&pL.apply(this,arguments);}catch(e){add('error','onAdaEmbedLoaded threw',e&&e.message);} add('probe','onAdaEmbedLoaded fired'); subscribeDebug();};
+  const pR=s.adaReadyCallback; s.adaReadyCallback=function(){try{pR&&pR.apply(this,arguments);}catch(e){add('error','adaReadyCallback threw',e&&e.message);} add('probe','adaReadyCallback fired'); setReady(true); subscribeDebug();};
+  setTimeout(()=>{ if(!sub) add('error','No Ada callback after 8s - SDK never started. Check id="__ada", handle, cluster, and that this origin is in the bot\'s iframe_allow_list.'); },8000);
+  wrap.querySelector('#dbgbar').addEventListener('click',async e=>{ const a=e.target&&e.target.getAttribute&&e.target.getAttribute('data-a');
+    if(a==='clear'){logEl.innerHTML='';return;}
+    if(a==='msgs'){try{add('probe','getMessages()',await window.adaEmbed.getMessages());}catch(err){add('error','getMessages failed',err&&err.message);}return;}
+    if(a==='conv'){try{add('probe','getConversation()',await (window.adaEmbed.getConversation?window.adaEmbed.getConversation():'n/a'));}catch(err){add('error','getConversation failed',err&&err.message);}return;}
+    open=!open; wrap.style.maxHeight=open?'45vh':'34px'; wrap.querySelector('#dT').textContent=open?'v':'^'; });
+  add('probe','debug panel ready - waiting for Ada SDK...');
+})();
+</script>
+
+<!-- Load Ada AFTER window.adaSettings + the debug panel. id="__ada" + data-handle is what
+     auto-bootstraps the headless conversation, so the handle lives only in CONFIG. -->
+<script>
+  (function loadAda(){
+    if(/[?&]demo\b/i.test(location.search)) return;   // offline preview: never contact Ada
+    var s=document.createElement('script');
+    s.id='__ada'; s.async=true;
+    s.src='https://static.ada.support/embed2.js';
+    s.setAttribute('data-handle', (window.adaSettings&&window.adaSettings.handle)||'');
+    document.body.appendChild(s);
+  })();
+</script>
+</body>
+</html>
