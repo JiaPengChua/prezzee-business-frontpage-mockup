@@ -472,8 +472,8 @@
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>No account or registration fees</li>
           <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>No delivery fees on email gifts</li>
-          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>Flat 3% on credit card checkout (VISA, Mastercard, AMEX)</li>
-          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>Optional SMS delivery at 50&cent; per SMS</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>1.15% merchant fee on credit card (VISA, Mastercard, AMEX, UnionPay)</li>
+          <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12 3.41 13.41 9 19 21 7l-1.41-1.41z"/></svg>Or pay by bank transfer, or pre-load a float</li>
         </ul>
       </div>
     </div>
@@ -1123,9 +1123,9 @@ if(state.demo){ state.adaReady=state.convReady=true; setLed('','Offline preview'
 function demoReply(q){
   const l=q.toLowerCase();
   if(/cost|fee|pricing|price|surcharge/.test(l))
-    return "**What it costs**\nPrezzee Business is **free** to use — no account fees, no registration fees, and no delivery fees for email gifts. You only pay for the gift cards you buy.\n\n- **3% flat** surcharge when checking out with a credit card (VISA, Mastercard, AMEX)\n- **50¢ per SMS** — SMS delivery is optional\n\nWould you like me to walk you through signing up?";
-  if(/payment|pay |visa|amex|mastercard|wire|invoice|deposit/.test(l))
-    return "**Payment methods**\nYou can pay for an order in three ways:\n\n1. **Credit card** — VISA, AMEX or Mastercard (3% surcharge)\n2. **Wire transfer** — applied against the order\n3. **Pre-load your account** — choose *Deposit Funds* on the dashboard homepage and draw down from the float\n\nAll eGift cards are sent out upon receipt of payment. Which method suits your team?";
+    return "**What it costs**\nPrezzee Business is **free** to set up — no account fees, no registration fees, and no delivery fees for email gifts. You only pay for the gift cards you buy.\n\n- Credit card payments incur a **1.15% merchant fee**\n- Bank transfer and pre-paid float carry no card fee\n\nWould you like me to walk you through signing up?";
+  if(/payment|pay |visa|amex|mastercard|unionpay|wire|bank|invoice|deposit|float/.test(l))
+    return "Prezzee Business offers these payment methods in Australia:\n\n- **Credit Card** — VISA, MasterCard, AMEX and UnionPay. Credit card payments incur a **1.15% merchant fee**.\n- **Bank Transfer** — funds generally take **2–3 business days** to clear.\n- **Pre-Paid Float (Account Top Up)** — add funds in advance and use them for future orders.\n\nYou can use only one payment type per checkout. **Post-paid accounts** aren't available, and the Pre-Paid Float must be funded by bank transfer.";
   if(/receiv/.test(l))
     return "**Receiving an eGift card**\nYour gift arrives by **email or SMS** from the sender. Look for the message and tap **Unwrap your gift**.\n\n- If the sender set a PIN, keep the **4-digit PIN** handy — you'll need it to unlock the gift\n- No PIN? You'll skip straight through to the next step\n\nCan't find the email? Check your spam or promotions folder. Would you like help searching for it?";
   if(/redeem|claim|unwrap|pin/.test(l))
