@@ -702,7 +702,8 @@ const CONFIG = {
   timing: {
     replyTimeoutMs: 45000,   // no bot reply within this -> show a fallback bubble
     typingTailMs:   2500,    // keep the typing indicator this long after a bubble (multi-bubble answers)
-    greetingWaitMs: 9000,    // after reset(), wait this long for the agent's welcome before sending
+    greetingWaitMs: 12000,   // after reset(), wait at most this long for the agent's welcome
+    greetingQuietMs: 2200,   // ...and until it has been quiet this long (the welcome is multi-message)
   },
   /* Quick options. `send` is the EXACT text pushed to Ada with sendMessage()
      (deterministic - no LLM in the middle), so each chip is a repeatable test case. */
@@ -780,7 +781,8 @@ const CONFIG = {
     /^(hi|hi there|hello|hey|good (morning|afternoon|evening))\b[^.!?\n]{0,140}[.!?]?$/i,
     /i'?m (the|an|your)\b.{0,70}\b(ai|virtual|digital)\s+(assistant|agent)/i,
     /here to help\b.{0,140}\b(gift|business|customer|reward)/i,
-    /how (may|can) i (help|assist)/i,
+    /\b(how|what) (may |can |could )?i (help|assist)\b/i,
+    /what can i (help|do for) you/i,
     /i'?m still learning/i,
     /^welcome to prezzee/i,
   ],
@@ -801,6 +803,7 @@ const state = {
   awaiting:false,            // a question is in flight
   msgs:[],                   // {who:'me'|'bot'|'err', text, ts}
   greetingSeen:false,        // any inbound bot message => the agent is live on this conversation
+  lastInboundAt:0,           // when the newest inbound message landed (welcome-quiet detection)
   answered:false,            // a non-greeting bot message has been shown
   pendingSend:null,          // question asked before the conversation was ready
   swallowed:null,            // canned greeting lines held back, in case they're all we ever get
@@ -996,11 +999,16 @@ function finishTurn(){
 }
 
 /* ============ inbound: every bot message from Ada lands here ============ */
-function isGreeting(t){ return CONFIG.greetingPatterns.some(re=>re.test(t.trim())); }
+function isGreeting(t){
+  // Normalise typographic punctuation first - the live agent sends U+2019 apostrophes.
+  const n=t.trim().replace(/[\u2018\u2019]/g,"'").replace(/[\u2013\u2014]/g,'-');
+  return CONFIG.greetingPatterns.some(re=>re.test(n));
+}
 function handleBotMessage(body){
   const text=(body||'').trim();
   if(!text) return;
   state.greetingSeen=true;                                     // the agent is live on this conversation
+  state.lastInboundAt=Date.now();
   if(/##internal##/i.test(text)) return;                       // internal, never shown
   // Ada's welcome can arrive as several messages, on connect or right after the first question.
   // None of them are the answer, so hold them all back until a real answer shows up - the reply
@@ -1068,13 +1076,17 @@ async function freshConversation(){
   }catch(e){ console.warn('[ada] reset failed, using existing conversation:',(e&&e.message)||e); }
   await delay(600);                    // let the refreshed chat frame become responsive
 
-  // Wait for the agent's own welcome before the first question goes out. Sending mid-welcome makes
-  // Ada answer with its greeting flow and drop the question, so the handshake gates the send.
-  const until=CONFIG.timing.greetingWaitMs;
-  for(let waited=0; waited<until && !state.greetingSeen; waited+=200) await delay(200);
-  console.log(state.greetingSeen ? '[ada] greeting received - conversation ready'
-                                 : '[ada] no greeting within '+until+'ms - proceeding anyway');
-  await delay(300);
+  // Wait for the agent's own welcome to ARRIVE AND FINISH before the first question goes out.
+  // The welcome is several messages; a question landing between them is dropped by Ada's flow, so
+  // wait until the inbound stream has been quiet for greetingQuietMs (capped by greetingWaitMs).
+  const until=CONFIG.timing.greetingWaitMs, quiet=CONFIG.timing.greetingQuietMs;
+  let waited=0;
+  while(waited<until){
+    if(state.greetingSeen && Date.now()-state.lastInboundAt>=quiet) break;
+    await delay(200); waited+=200;
+  }
+  console.log(state.greetingSeen ? '[ada] welcome finished after '+waited+'ms - conversation ready'
+                                 : '[ada] no welcome within '+until+'ms - proceeding anyway');
   state.convReady=true;
   setLed('','Connected');
   if(state.pendingSend){ const q=state.pendingSend; state.pendingSend=null; deliver(q); }
